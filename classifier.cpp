@@ -1,5 +1,6 @@
 #include "classifier.h"
 #include <caffe/caffe.hpp>
+#include "cvxtext.h"
 Classifier::Classifier(const string& model_file,
                        const string& trained_file,
                        const string& mean_file,
@@ -169,15 +170,31 @@ static std::vector<int> Argmax(const std::vector<float>& v, int N) {
 
 /* Return the top N predictions. */
 std::vector<Prediction> Classifier::Classify(const cv::Mat& img, int N) {
-  std::vector<float> output = Predict(img);
+    img.copyTo(image_input);
+    predictions.clear();
+    std::vector<float> output = Predict(img);
+    N = std::min<int>(labels_.size(), N);
+    std::vector<int> maxN = Argmax(output, N);
+    for (int i = 0; i < N; ++i) {
+        int idx = maxN[i];
+        predictions.push_back(std::make_pair(labels_[idx], output[idx]));
+    }
+    return predictions;
+}
 
-  N = std::min<int>(labels_.size(), N);
-  std::vector<int> maxN = Argmax(output, N);
-  std::vector<Prediction> predictions;
-  for (int i = 0; i < N; ++i) {
-    int idx = maxN[i];
-    predictions.push_back(std::make_pair(labels_[idx], output[idx]));
-  }
 
-  return predictions;
+void Classifier::draw_show()
+{
+    CvxText text("/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf");
+    Prediction p;
+    for (size_t i = 0; i < predictions.size(); ++i) {
+        p = predictions[i];
+        std::cout << std::fixed << std::setprecision(4) << p.second << " - \""
+                  << p.first << "\"" <<std::endl;
+    }
+    //putText(image_input,p.first,Point(20,30),FONT_HERSHEY_SIMPLEX,1,Scalar(255,255,255),2);
+    text.putText(image_input,p.first,Point(0,20));
+    imshow("classifier",image_input);
+    waitKey(100);
+
 }

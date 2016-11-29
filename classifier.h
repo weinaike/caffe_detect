@@ -19,6 +19,7 @@ public:
                  const string& mean_file,
                  const string& label_file);
       std::vector<Prediction> Classify(const cv::Mat& img, int N = 5);
+      void draw_show();
 private:
       void SetMean(const string& mean_file);
       std::vector<float> Predict(const cv::Mat& img);
@@ -30,7 +31,8 @@ private:
       int num_channels_;
       cv::Mat mean_;
       std::vector<string> labels_;
-
+      vector<Prediction> predictions;
+      cv::Mat image_input;
 };
 
 #endif // CLASSIFIER_H
