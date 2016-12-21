@@ -1,6 +1,5 @@
 #ifndef CLASSIFIER_H
 #define CLASSIFIER_H
-//#define CPU_ONLY
 #include <caffe/caffe.hpp>
 #include <opencv.hpp>
 #include <vector>
@@ -8,7 +7,7 @@
 using namespace std;
 using namespace caffe;
 using namespace cv;
-
+#define CPU_ONLY
 typedef std::pair<string, float> Prediction;
 
 class Classifier

@@ -304,7 +304,7 @@ if __name__ == '__main__':
 	leng = len(catelist)
 	print "总的类别数目为%d"%leng #输出
 	#将类别均等分为12份
-	N = 6
+	N = 3
 	cate_list = []
 	for i in range(N):
 		cate_list.append([])
@@ -317,7 +317,7 @@ if __name__ == '__main__':
 		print "************8"	
 	'''
 	#进行多进程操作
-	parent_path = "/home/joyoung/digits/data/soymilk10_dealed"
+	parent_path = "/home/joyoung/digits/data/show2016_dealed/new"
 	dst_path = os.path.join(os.getcwd())
 	'''
 	p = Pool()

@@ -37,6 +37,10 @@ evaluate::evaluate(const string & groudtruthpath,
 
 }
 
+evaluate::evaluate()
+{
+
+}
 
 float evaluate::CalcAera(int box1[],int box2[])
 {
@@ -281,3 +285,4 @@ int evaluate::printresult()
     cout<<"avrage precise: "<<precise_all/num_clac<<endl;
     return 0;
 }
+

@@ -192,8 +192,8 @@ void Classifier::draw_show()
         std::cout << std::fixed << std::setprecision(4) << p.second << " - \""
                   << p.first << "\"" <<std::endl;
     }
-    //putText(image_input,p.first,Point(20,30),FONT_HERSHEY_SIMPLEX,1,Scalar(255,255,255),2);
-    text.putText(image_input,p.first,Point(0,20));
+    putText(image_input,p.first,Point(0,25),FONT_HERSHEY_SIMPLEX,1,Scalar(255,255,255),2);
+    //text.putText(image_input,p.first,Point(0,20));
     imshow("classifier",image_input);
     waitKey(100);
 

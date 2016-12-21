@@ -9,7 +9,8 @@ SOURCES += main.cpp \
     jsoncpp.cpp \
     ctrain.cpp \
     classifier.cpp \
-    evaluate.cpp
+    evaluate.cpp \
+    cimagepro.cpp
 
 HEADERS += \
     detector.h \
@@ -18,7 +19,8 @@ HEADERS += \
     json/json.h \
     ctrain.h \
     classifier.h \
-    evaluate.h
+    evaluate.h \
+    cimagepro.h
 
 INCLUDEPATH=/usr/include/\
 /usr/include/opencv\

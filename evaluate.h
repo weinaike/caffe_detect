@@ -3,6 +3,7 @@
 #include <json/json.h>
 #include <string>
 #include <vector>
+#include <opencv.hpp>
 using namespace std;
 struct object
 {
@@ -19,8 +20,10 @@ public:
              const string & predictpath ,
              const string & ext2,
              const string & labelfile);
+    evaluate();
     int calcresult();
     int printresult();
+
 private:
     float CalcAera(int box1[],int box2[]);
     bool IsOverlap(object obj1,object obj2);
@@ -29,6 +32,7 @@ private:
                                   const string & ext);
     string GetExt(string filename);
     string GetName(string filename);
+
 private:
 
     map <string, string> wordsmap;
