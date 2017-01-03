@@ -8,7 +8,7 @@
 #include "ctrain.h"
 #include "classifier.h"
 #include "cvxtext.h"
-#include "cimagepro.h"
+#include "evaluate.h"
 
 using namespace cv;
 using namespace std;
@@ -114,20 +114,30 @@ void det_one(VideoCapture & cap) {
         detector.draw_show();
     }
 }
+void fridgeTest()
+{
+    string gtPath = "/home/joyoung/py-faster-rcnn/data/JoyData/Joymid/mid-test-all/";
+    string ptPath = "/home/joyoung/py-faster-rcnn/data/JoyData/Joymid/detect/";
+    string labelFile = "/home/joyoung/qtwork/caffe_detect/joinLabel.txt";
+    string labelMap = "/home/joyoung/qtwork/caffe_detect/labelmap.txt";
+    evaluate rcnn(gtPath,"txt",ptPath,"json",labelFile);
+    rcnn.setLabelMap(labelMap);
+    rcnn.calcresult();
+}
 
 
 int main()
 {
-    VideoCapture cap(0);
-    cap.set(CV_CAP_PROP_FRAME_HEIGHT,720);
-    cap.set(CV_CAP_PROP_FRAME_WIDTH,1280);
-    if(!cap.isOpened())
-    {
-        cout<<"camera is not open\n";
-        return(1);
-    }
-    //det_one(cap);
-    class_one(cap);
+//    VideoCapture cap(0);
+//    cap.set(CV_CAP_PROP_FRAME_HEIGHT,720);
+//    cap.set(CV_CAP_PROP_FRAME_WIDTH,1280);
+//    if(!cap.isOpened())
+//    {
+//        cout<<"camera is not open\n";
+//        return(1);
+//    }
+//    //det_one(cap);
+//    class_one(cap);
 //    string parent = "/home/joyoung/py-faster-rcnn/data/JoyData/Joyjzlp/JZLP/";
 //    string annopath = "/home/joyoung/py-faster-rcnn/data/JoyData/Joyjzlp/JZLP/";
 //    string outimage = "/home/joyoung/py-faster-rcnn/data/JoyData/Joyjzlp-small/img/";
@@ -145,5 +155,6 @@ int main()
 //    cv::cvtColor(dst,dst,CV_RGB2BGR);
 //    imshow("dst",dst);
 //    waitKey(0);
+    fridgeTest();
     return 0;
 }
